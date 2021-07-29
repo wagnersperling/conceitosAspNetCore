@@ -40,6 +40,7 @@ namespace AspNetCoreIdentity
             
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AspNetCoreIdentityContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
