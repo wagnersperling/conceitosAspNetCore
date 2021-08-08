@@ -1,4 +1,5 @@
 ﻿using AspNetCoreIdentity.Config;
+using AspNetCoreIdentity.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,10 @@ namespace AspNetCoreIdentity
             services.AddAuthorizationConfig();
             services.ResolveDependencies();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(AuditoriaFilter));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
